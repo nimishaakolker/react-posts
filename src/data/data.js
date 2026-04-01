@@ -10,6 +10,7 @@ export const posts = [
     avatar: "url"
   },
   likes: ["userId1", "userId2"], 
+  
 },
 {
   id: crypto.randomUUID() ,

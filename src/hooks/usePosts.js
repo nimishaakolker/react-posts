@@ -4,6 +4,8 @@ import { posts as initialPosts } from '../data/data'
 const usePosts = () => {
 const [posts, setPosts] = useState(initialPosts)
 
+const [bookmarks, setBookmarks] = useState([])
+
 const handleLike = (postId) => {
     const updated = posts.map(post => {
         if (post.id === postId) {
@@ -20,6 +22,15 @@ const handleLike = (postId) => {
     setPosts(updated);
 };
 
+const handleBookmark = (postId) => {
+    const alreadyBookmarked = bookmarks.includes(postId)
+    if(alreadyBookmarked){
+        setBookmarks(bookmarks.filter(id => id !== postId))
+    
+    } else{
+        setBookmarks([...bookmarks, postId])
+    }
+}
 const handleDelete = (postId) => {
     const updated = posts.filter(post => post.id !== postId)
     setPosts(updated)
@@ -37,7 +48,7 @@ const handleAddPost = () => {
 
     setPosts([...posts, newPost])
 }
-return {posts, handleAddPost, handleDelete, handleLike}
+return {posts, handleAddPost, handleDelete, handleLike, handleBookmark, bookmarks}
 }
 
 
